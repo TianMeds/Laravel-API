@@ -1,5 +1,3 @@
-![image](https://github.com/TianMeds/Laravel-API/assets/99672958/5f00410b-0a37-4527-9caf-b7d4fb067d09)<div align="center">
-  <img alt="Laradock" src="https://raw.githubusercontent.com/TianMeds/image--stocks-for-coding/main/image_2024-01-31_173621833.png" width="100%" height="auto" />
   <h1>Create an API  Step by Step via Laravel</h1>
 
 </div>
@@ -35,7 +33,7 @@
   -a  = all at once
   ```
 
-    <li>
+<li>
   <h4>Step 2: So, first we will be creating a Model </h4>
   </li>
 
@@ -69,7 +67,7 @@
 
 <h2>Modifying the Models, Controller, and Resources</h2>
 
-<h3>Controller </h3>
+<h3>CONTROLLER </h3>
 
   <li>
     <h4>Step 5: Import all the Resource and Collection and also the Response in top of the Controller it should look like this</h4>
@@ -151,4 +149,36 @@ public function destroy(ProjectPartner $projectPartner, $id)
 ```
 
 <p>Now were done in our Controller File now lets hop in our Model Part</p>
+
+<h3>MODEL</h3>
+
+<p>So, the Model will be the one handling the columns in your Table or in the Database</p>
+
+  <li>
+    <h4>Step 6: Remember to put the needed column in the Model</h4>
+  </li>
+
+```
+
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class ProjectPartner extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'scholarship_categ_id',
+        'project_partner_name',
+        'project_partner_mobile_num',
+        'school_id',
+    ];
+}
+```
+
+
 
