@@ -371,8 +371,17 @@ php artisan db:seed --class=ProjectPartnerSeeder
 
 <i>Note that if you will do POST you will be going to the Body and add the Columns needed and if PUT is you will use the ID and add it in the API Endpoint same with the Delete</i>
 
-
+## Reminder
 You can copy and paste this markdown code directly into your README.md file. Make sure to replace placeholders like `NameofModel`, `NameofController`, etc., with your actual names. Also, adjust image URLs to point to your actual image locations.
+
+## Feedback
+If you have any feedback, please reach out to me at tianmeds.business@gmail.com
+
+## Author
+- [@tianmeds](https://github.com/TianMeds)
+
+## License
+[MIT License](LICENSE)
 
 
 
