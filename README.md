@@ -180,5 +180,218 @@ class ProjectPartner extends Model
 }
 ```
 
+<p>Now were done in our Model File now lets hop in our Resources and Collection Part</p>
+
+<h3>RESOURCE & COLLECTION</h3>
+
+  <li>
+    <h4>Step 7: Now we will be creating a parent array for our data, so we will put this code in the Collection we created </h4>
+  </li>
+
+  ```
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\ResourceCollection;
+
+class ProjectPartnerCollection extends ResourceCollection
+{
+    /**
+     * Transform the resource collection into an array.
+     *
+     * @return array<int|string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'data' => $this->collection,
+        ];
+    }
+}
+```
+  <li>
+    <h4>Step 8: Now we will be creating the needed data or our expected data to be returned when we do a request. This will be the file for Resource </h4>
+  </li>
+
+```
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'scholarship_categ_id' => $this->scholarship_categ_id,
+            'project_partner_name' => $this->project_partner_name,
+            'project_partner_mobile_num' => $this->project_partner_mobile_num,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
+            'deleted_at' => $this->deleted_at,
+            'school_id' => $this->school_id,
+        ];
+    }
+```
+
+<p>Now were done in our Resources and Collection File now lets hop in our Migration Files Part</p>
+
+<h3>MIGRATION</h3>
+
+  <li>
+    <h4>Step 9: Here we create type the column that the database should have so this will be the column present in the database all of it  </h4>
+  </li>
+
+```
+public function up(): void
+    {
+        Schema::create('project_partners', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('scholarship_categ_id');
+            $table->string('project_partner_name');
+            $table->string('project_partner_mobile_num');
+            $table->timestamps();
+        });
+    }
+
+```
+  
+<p>Now were done in our Migration File now lets hop in our Seeder Files Part</p>
+
+<h3>SEEDERS</h3>
+
+  <li>
+    <h4>Step 9: Now lets hop on the seeders so we will be matching the data needed or the columns we put in our table. Below is the example of data im providing or inserting in the table </h4>
+  </li>
+  
+```
+DB::table('project_partners')->insert([
+    [
+        'project_partner_name' => 'BACPAT Youth Development Foundation Inc.',
+        'project_partner_mobile_Num' => '09011223344'
+    ],
+    [
+        'project_partner_name' => 'Welcome Home Foundation Inc. (BACPAT Scholars)',
+        'project_partner_mobile_Num' => '09055667788'
+    ],
+    [
+        'project_partner_name' => 'Education for Former OSY',
+        'project_partner_mobile_Num' => '09098765432'
+    ],
+    [
+        'project_partner_name' => 'Bahay Maria Children Center Formal',
+        'project_partner_mobile_Num' => '09011112222'
+    ],
+    [
+        'project_partner_name' => 'Canossian Sisters – Endorsed Grantees c/o Sr. Elizabeth Tolentino',
+        'project_partner_mobile_Num' => '09033334444'
+    ],
+    [
+        'project_partner_name' => 'Canossian Sisters – Endorsed Grantees c/o Sr. Elizabeth Tolentino & Sr. Mila Reyes',
+        'project_partner_mobile_Num' => '09055556666'
+    ],
+    // ... (add other partner details in the same format)
+]);
+
+```
+
+  <li>
+    <h4>Step 10: Now to create an API Endpoint for our Laravel is we need to modify the API.php in the routes folder of Laravel	</h4>
+  </li>
+
+
+<i>Things to Remember before modifying API.php</i>
+
+<li>
+	<ul>Remember to import your controller in the top of api.php first, so in our end is we need to import ProjectPartnerController in top of it</ul>
+	<ul>Then lets create now our method function for every data this consist the GET, PUT, POST, DELETE</ul>
+</li>
+
+<i>So before we create the code in Routes lets dicuss first the Format Structure of Routing. For now we use GET Method to discuss Format Structure</i>
+
+```
+Route::apiResource('/project-partners', ProjectPartnerController::class)->only(['index', 'show']);
+
+```
+
+<li>
+	<ul><b>Route</b> will be the word to use for routing or API this will be the default in the API.php and this will be the use in every methods</ul>
+	<ul><b>apiResource</b>so this will be one using for knowing what method we will be using we can use also get,put,post, and delete here</ul>
+	<ul><b>The "/project-partner" </b>will be the endpoint we will be calling in Postman we can modify this on what we want</ul>
+	<ul><b>ProjectPartnerController</b>this one will be the controller file name and this will be the basis where is our function will be running were we put our index, show, update functions and based on your code.</ul>
+	<ul><b>The "index" and "show"</b> This can be modify by you but in my case i create my function name to index and show so basing on the name of functions</ul>
+</li>
+
+
+<p>So in my end i create my endpoints and function in this format </p>
+
+```
+Route::apiResource('/project-partners', ProjectPartnerController::class)->only(['index', 'show']);
+Route::post('/project-partners', [ProjectPartnerController::class, 'store']);
+Route::put('/project-partners/{id}', [ProjectPartnerController::class, 'update']);
+Route::delete('/project-partners/{id}', [ProjectPartnerController::class, 'destroy']);
+```
+
+<li>
+	<ul>so apiResource is for the GET function or showing the data</ul>
+	<ul>POST method is the one storing new data in our table </ul>
+	<ul>PUT method is the one updating the things that we had in our table so this will be used id to be modified </ul>
+	<ul>DELETE method is obviously for removing the data in our table</ul>
+</li>
+
+
+
+<i>Now that we completed configuring the file lets go back to our terminal and folder of the backend </i>
+
+
+  <li>
+    <h4>Step 11: Make sure to put the .env file first in the host ip address of	</h4>
+  </li>
+
+  ```
+	127.0.0.1 or it depends to you 
+```
+
+  <li>
+    <h4>Step 12: Run this in your terminal </h4>
+  </li>
+
+  ```
+	php artisan migrate
+```
+
+<i>So, it will be looking like this </i>
+![image](https://github.com/TianMeds/Laravel-API/assets/99672958/f65b5af2-6654-41fb-ab31-bd0321f27e27)
+
+<i>In the Database your using you should see this now </i>
+
+![image](https://github.com/TianMeds/Laravel-API/assets/99672958/84ebbbce-8bd4-4680-9ebb-3777fda6e0aa)
+
+
+  <li>
+    <h4>Step 12: Now we run the seeder of the table so we we need to import this first in the top of our seeder or else it will return an error of  </h4>
+  </li>
+
+```
+Class "Database\Seeders\DB" not Found
+```
+
+  <li>
+    <h4>Step 13: After that you can Run the seeder now and it will look like this  </h4>
+  </li>
+
+  ```
+php artisan db:seed --class=ProjectPartnerSeeder
+```
+
+
+<h2>POSTMAN TESTING THE CODE</h2>
+
+  <li>
+    <h4>Step 14: Then now access the API you created and make sure your server is working it should look like this and same with other method function   	</h4>
+  </li>
+
+<p>It would look like this in POSTMAN when you do the GET method </p>
+
+![image](https://github.com/TianMeds/Laravel-API/assets/99672958/daaaa915-ca8b-4ffb-a5a1-3543ff52ab5e)
+
+<i>Note that if you will do POST you will be going to the Body and add the Columns needed and if PUT is you will use the ID and add it in the API Endpoint same with the Delete</i>
 
 
