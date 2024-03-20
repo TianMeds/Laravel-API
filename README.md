@@ -1,28 +1,27 @@
-  <h1>Create an API  Step by Step via Laravel</h1>
+# Creating an API Step by Step with Laravel
 
-</div>
+## Introduction
 
-  <h3>So, right now we’re going to talk about how to create an API in Laravel?</h3>
+This guide will walk you through the process of creating a REST API using Laravel, a popular PHP framework. Before diving in, make sure you are familiar with MVC frameworks. You can find more information [here](https://www.tutorialspoint.com/mvc_framework/mvc_framework_introduction.htm).
 
-  <h4>Before starting we should be aware or have knowledge into MVC Frameworks for more information. <a href="https://www.tutorialspoint.com/mvc_framework/mvc_framework_introduction.htm">Click here</a></h4>
+## Prerequisites
 
-  <h1>Make sure to have this already setup</h1>
-  
-  <ul>
-    <li>Laravel Installed</li>
-    <li>Visual Studio Code or any IDE you want</li>
-    <li>Postman</li>
-  </ul>
+Make sure you have the following set up:
 
-  <h1>Steps for Creating a REST API for Laravel</h1>
-  <ul>
+- Laravel Installed
+- Visual Studio Code or any IDE of your choice
+- Postman
 
-  <h2>Creating all the file we need for our API </h2>
-  
-  <li>
-  <h4>Step 1: In your created Laravel Folder make sure to go in the folder path of it</h4>
-  </li>
+## Steps for Creating a REST API with Laravel
 
+### 1. Creating Necessary Files
+#### Step 1: Navigate to Your Laravel Folder
+
+```bash
+cd your_laravel_folder
+```
+#### Step 2: Create a Model	
+	
   <h6>Before hopping to the code what is some shortcut in creating. This is the shortcuts mostly we will be using </h6>
 
   ```
@@ -33,45 +32,42 @@
   -a  = all at once
   ```
 
-<li>
-  <h4>Step 2: So, first we will be creating a Model </h4>
-  </li>
-
-  ```
-    php artisan make:model `NameofModel` -mfs
-  ```
+```
+php artisan make:model NameofModel -mfs
+```
 
   <p>After pressing Enter in that it will be  able to create a Model with the Migration, Factories, and Seeder Files of that model.</p>
   ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/9b56dc57-711d-4b6e-8362-93cd6c772e6a)
 
-  <li>
-  <h4>Step 3: Next is we create a Controller for our Models and API. It would look like this in your terminal</h4>
-  </li>
+#### Step 3: Create a Controller
 
   ```
-    php artisan make:controller `NameofController` --api --model=`NameofModel` 
+    php artisan make:controller NameofController --api --model=NameofModel
   ```
 
 ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/570d8506-477c-4984-bc76-275bd17454c2)
 
-  <li>
-  <h4>Step 4: Next is we create a Resource and Collection of Data for our API. It would look like this in your terminal</h4>
-  </li>
+#### Step 4: Create a Resource and Collection
 
-  ```
-    php artisan make:resource `NameofResource`
-    php artisan make:resource `NameofCollection`
-  ```
-
+```
+php artisan make:resource NameofResource
+php artisan make:resource NameofCollection
+```
 ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/15171858-7127-4304-b896-8e77f5a48d9a)
 
-<h2>Modifying the Models, Controller, and Resources</h2>
+### 2. Modifying Models, Controllers, and Resources
 
-<h3>CONTROLLER </h3>
+Controller
 
-  <li>
-    <h4>Step 5: Import all the Resource and Collection and also the Response in top of the Controller it should look like this</h4>
-  </li>
+#### Step 5: Import Resources and Response
+
+```
+use App\Http\Resources\ProjectPartnerResource;
+use App\Http\Resources\ProjectPartnerCollection;
+use Illuminate\Http\Response;
+
+```
+or 
 
   ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/56b07f47-fa2c-4920-b449-66a792d7690c)
 
@@ -154,9 +150,7 @@ public function destroy(ProjectPartner $projectPartner, $id)
 
 <p>So, the Model will be the one handling the columns in your Table or in the Database</p>
 
-  <li>
-    <h4>Step 6: Remember to put the needed column in the Model</h4>
-  </li>
+  #### Step 6: Remember to put the needed column in the Model
 
 ```
 
@@ -184,9 +178,7 @@ class ProjectPartner extends Model
 
 <h3>RESOURCE & COLLECTION</h3>
 
-  <li>
-    <h4>Step 7: Now we will be creating a parent array for our data, so we will put this code in the Collection we created </h4>
-  </li>
+#### Step 7: Now we will be creating a parent array for our data, so we will put this code in the Collection we created
 
   ```
 <?php
@@ -211,9 +203,7 @@ class ProjectPartnerCollection extends ResourceCollection
     }
 }
 ```
-  <li>
-    <h4>Step 8: Now we will be creating the needed data or our expected data to be returned when we do a request. This will be the file for Resource </h4>
-  </li>
+#### Step 8: Define Resource Data
 
 ```
     public function toArray(Request $request): array
@@ -235,9 +225,7 @@ class ProjectPartnerCollection extends ResourceCollection
 
 <h3>MIGRATION</h3>
 
-  <li>
-    <h4>Step 9: Here we create type the column that the database should have so this will be the column present in the database all of it  </h4>
-  </li>
+#### Step 9: Here we create type the column that the database should have so this will be the column present in the database all of it 
 
 ```
 public function up(): void
@@ -257,9 +245,7 @@ public function up(): void
 
 <h3>SEEDERS</h3>
 
-  <li>
-    <h4>Step 9: Now lets hop on the seeders so we will be matching the data needed or the columns we put in our table. Below is the example of data im providing or inserting in the table </h4>
-  </li>
+  #### Step 10: Now lets hop on the seeders so we will be matching the data needed or the columns we put in our table. Below is the example of data im providing or inserting in the table
   
 ```
 DB::table('project_partners')->insert([
@@ -292,10 +278,7 @@ DB::table('project_partners')->insert([
 
 ```
 
-  <li>
-    <h4>Step 10: Now to create an API Endpoint for our Laravel is we need to modify the API.php in the routes folder of Laravel	</h4>
-  </li>
-
+#### Step 11:  Now to create an API Endpoint for our Laravel is we need to modify the API.php in the routes folder of Laravel
 
 <i>Things to Remember before modifying API.php</i>
 
@@ -348,17 +331,13 @@ Route::delete('/project-partners/{id}', [ProjectPartnerController::class, 'destr
 <i>Now that we completed configuring the file lets go back to our terminal and folder of the backend </i>
 
 
-  <li>
-    <h4>Step 11: Make sure to put the .env file first in the host ip address of	</h4>
-  </li>
+  #### Step 12: Make sure to put the .env file first in the host ip address of
 
   ```
 	127.0.0.1 or it depends to you 
 ```
 
-  <li>
-    <h4>Step 12: Run this in your terminal </h4>
-  </li>
+  #### Step 13: Run this in your terminal
 
   ```
 	php artisan migrate
@@ -371,34 +350,31 @@ Route::delete('/project-partners/{id}', [ProjectPartnerController::class, 'destr
 
 ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/84ebbbce-8bd4-4680-9ebb-3777fda6e0aa)
 
-
-  <li>
-    <h4>Step 12: Now we run the seeder of the table so we we need to import this first in the top of our seeder or else it will return an error of  </h4>
-  </li>
+  #### Step 14: Now we run the seeder of the table so we we need to import this first in the top of our seeder or else it will return an error of
 
 ```
 Class "Database\Seeders\DB" not Found
 ```
 
-  <li>
-    <h4>Step 13: After that you can Run the seeder now and it will look like this  </h4>
-  </li>
+#### Step 15: After that you can Run the seeder now and it will look like this
 
   ```
 php artisan db:seed --class=ProjectPartnerSeeder
 ```
 
 
-<h2>POSTMAN TESTING THE CODE</h2>
+### 3. Testing With Postman
 
-  <li>
-    <h4>Step 14: Then now access the API you created and make sure your server is working it should look like this and same with other method function   	</h4>
-  </li>
+  #### Step 16: Then now access the API you created and make sure your server is working it should look like this and same with other method function
 
 <p>It would look like this in POSTMAN when you do the GET method </p>
 
 ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/daaaa915-ca8b-4ffb-a5a1-3543ff52ab5e)
 
 <i>Note that if you will do POST you will be going to the Body and add the Columns needed and if PUT is you will use the ID and add it in the API Endpoint same with the Delete</i>
+
+
+You can copy and paste this markdown code directly into your README.md file. Make sure to replace placeholders like `NameofModel`, `NameofController`, etc., with your actual names. Also, adjust image URLs to point to your actual image locations.
+
 
 
