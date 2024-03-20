@@ -330,11 +330,12 @@ Route::delete('/project-partners/{id}', [ProjectPartnerController::class, 'destr
 ```
 
 <li>
-	<ul>so apiResource is for the GET function or showing the data</ul>
-	<ul>POST method is the one storing new data in our table </ul>
-	<ul>PUT method is the one updating the things that we had in our table so this will be used id to be modified </ul>
-	<ul>DELETE method is obviously for removing the data in our table</ul>
+	<ul>GET method (apiResource): Used for retrieving or showing data.</ul>
+	<ul>POST method: Stores new data in our table.</ul>
+	<ul>PUT method: Updates existing data in our table, typically using an ID to specify which entry to modify.</ul>
+	<ul>DELETE method: Removes data from our table.</ul>
 </li>
+
 
 
 
