@@ -37,7 +37,9 @@ php artisan make:model NameofModel -mfs
 ```
 
   <p>After pressing Enter in that it will be  able to create a Model with the Migration, Factories, and Seeder Files of that model.</p>
-  ![image](https://github.com/TianMeds/Laravel-API/assets/99672958/9b56dc57-711d-4b6e-8362-93cd6c772e6a)
+
+![image](https://github.com/TianMeds/Laravel-API/assets/99672958/980cbb6c-20fb-4a05-abdb-a439f940e5ab)
+
 
 #### Step 3: Create a Controller
 
