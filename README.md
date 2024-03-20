@@ -282,12 +282,11 @@ DB::table('project_partners')->insert([
 
 <i>Things to Remember before modifying API.php</i>
 
-<li>
-	<ol>
-		<li><ul>Remember to import your controller at the top of api.php. In our case, we need to import ProjectPartnerController at the top.</ul></li>
-		<li><ul>Then let's create our method functions for handling every type of data. This includes GET, PUT, POST, and DELETE.</ul></li>
-	</ol>
-</li>
+<ol>
+  <li><ul><li>Remember to import your controller at the top of api.php. In our case, we need to import ProjectPartnerController at the top.</li></ul></li>
+  <li><ul><li>Then let's create our method functions for handling every type of data. This includes GET, PUT, POST, and DELETE.</li></ul></li>
+</ol>
+
 
 
 <i>So before we create the code in Routes lets dicuss first the Format Structure of Routing. For now we use GET Method to discuss Format Structure</i>
@@ -296,17 +295,13 @@ DB::table('project_partners')->insert([
 Route::apiResource('/project-partners', ProjectPartnerController::class)->only(['index', 'show']);
 
 ```
-
-<li>
-	<ol>
-		<li><b>Route:</b> This will be the word to use for routing or API, and it will be the default in the API.php file. This will be used in every method.</li>
-		<li><b>apiResource:</b> This is used to specify the method we will be using. We can use get, put, post, and delete here.</li>
-		<li><b>The "/project-partner":</b> This will be the endpoint we will be calling in Postman, and we can modify this to suit our needs.</li>
-		<li><b>ProjectPartnerController:</b> This will be the controller file name and will serve as the basis for where our functions will be running. This is where we put our index, show, and update functions, based on your code.</li>
-		<li><b>"index" and "show":</b> These can be modified by you, but in my case, I created my function names as index and show, basing them on the names of functions.</li>
-	</ol>
-</li>
-
+<ol>
+  <li><b>Route:</b> This will be the word to use for routing or API, and it will be the default in the API.php file. This will be used in every method.</li>
+  <li><b>apiResource:</b> This is used to specify the method we will be using. We can use get, put, post, and delete here.</li>
+  <li><b>The "/project-partner":</b> This will be the endpoint we will be calling in Postman, and we can modify this to suit our needs.</li>
+  <li><b>ProjectPartnerController:</b> This will be the controller file name and will serve as the basis for where our functions will be running. This is 	where we put our index, show, and update functions, based on your code.</li>
+  <li><b>"index" and "show":</b> These can be modified by you, but in my case, I created my function names as index and show, basing them on the names of functions.</li>
+</ol>
 
 
 <p>So in my end i create my endpoints and function in this format </p>
@@ -318,12 +313,13 @@ Route::put('/project-partners/{id}', [ProjectPartnerController::class, 'update']
 Route::delete('/project-partners/{id}', [ProjectPartnerController::class, 'destroy']);
 ```
 
-<li>
-	<ul>GET method (apiResource): Used for retrieving or showing data.</ul>
-	<ul>POST method: Stores new data in our table.</ul>
-	<ul>PUT method: Updates existing data in our table, typically using an ID to specify which entry to modify.</ul>
-	<ul>DELETE method: Removes data from our table.</ul>
-</li>
+<ol>
+  <li>GET method (apiResource): Used for retrieving or showing data.</li>
+  <li>POST method: Stores new data in our table.</li>
+  <li>PUT method: Updates existing data in our table, typically using an ID to specify which entry to modify.</li>
+  <li>DELETE method: Removes data from our table.</li>
+</ol>
+
 
 
 
