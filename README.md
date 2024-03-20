@@ -4,6 +4,8 @@
 
 This guide will walk you through the process of creating a REST API using Laravel, a popular PHP framework. Before diving in, make sure you are familiar with MVC frameworks. You can find more information [here](https://www.tutorialspoint.com/mvc_framework/mvc_framework_introduction.htm).
 
+Before diving to API lets discuss  it in a simple or non program type of language, Imagine an API like a menu in a restaurant. You, the client, order from the menu, and the server, or the backend, prepares your request. The API is the middleman that facilitates this communication, just like how a menu helps you communicate your order to the kitchen. It's a way for different software systems to talk to each other effectively and efficiently.
+
 ## Prerequisites
 
 Make sure you have the following set up:
