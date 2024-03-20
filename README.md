@@ -300,9 +300,12 @@ DB::table('project_partners')->insert([
 <i>Things to Remember before modifying API.php</i>
 
 <li>
-	<ul>Remember to import your controller in the top of api.php first, so in our end is we need to import ProjectPartnerController in top of it</ul>
-	<ul>Then lets create now our method function for every data this consist the GET, PUT, POST, DELETE</ul>
+	<ol>
+		<li><ul>Remember to import your controller at the top of api.php. In our case, we need to import ProjectPartnerController at the top.</ul></li>
+		<li><ul>Then let's create our method functions for handling every type of data. This includes GET, PUT, POST, and DELETE.</ul></li>
+	</ol>
 </li>
+
 
 <i>So before we create the code in Routes lets dicuss first the Format Structure of Routing. For now we use GET Method to discuss Format Structure</i>
 
@@ -312,12 +315,15 @@ Route::apiResource('/project-partners', ProjectPartnerController::class)->only([
 ```
 
 <li>
-	<ul><b>Route</b> will be the word to use for routing or API this will be the default in the API.php and this will be the use in every methods</ul>
-	<ul><b>apiResource</b>so this will be one using for knowing what method we will be using we can use also get,put,post, and delete here</ul>
-	<ul><b>The "/project-partner" </b>will be the endpoint we will be calling in Postman we can modify this on what we want</ul>
-	<ul><b>ProjectPartnerController</b>this one will be the controller file name and this will be the basis where is our function will be running were we put our index, show, update functions and based on your code.</ul>
-	<ul><b>The "index" and "show"</b> This can be modify by you but in my case i create my function name to index and show so basing on the name of functions</ul>
+	<ol>
+		<li><b>Route:</b> This will be the word to use for routing or API, and it will be the default in the API.php file. This will be used in every method.</li>
+		<li><b>apiResource:</b> This is used to specify the method we will be using. We can use get, put, post, and delete here.</li>
+		<li><b>The "/project-partner":</b> This will be the endpoint we will be calling in Postman, and we can modify this to suit our needs.</li>
+		<li><b>ProjectPartnerController:</b> This will be the controller file name and will serve as the basis for where our functions will be running. This is where we put our index, show, and update functions, based on your code.</li>
+		<li><b>"index" and "show":</b> These can be modified by you, but in my case, I created my function names as index and show, basing them on the names of functions.</li>
+	</ol>
 </li>
+
 
 
 <p>So in my end i create my endpoints and function in this format </p>
